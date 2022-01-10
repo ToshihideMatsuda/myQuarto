@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/message.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<strong>simple quarto</strong><br>
+
+<div id="board">
+    <div v-for="item in table" :key="item.id">
+        <!-- 動的にするためrefにv-bindをつける -->
+        <p :ref="name">{{ item.name }}</p>
+    </div>
+</div>
+
+
+<table>
+    <tr><td>1,1</td><td>1,2</td></tr>
+    <tr><td>2,1</td><td>2,2</td></tr>
+</table>
+
+<div id="userName"> User : {{ userName }}</div>
+<div>
+    <input type="button" value="login" onclick="login()"/>
+    <input type="button" value="start" onclick="startGame()" id="startButton"/>
+</div>
+<br>
+<hr>
+<div id="messages"/>
+</body>
+</html>
