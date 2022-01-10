@@ -55,7 +55,7 @@ wss.on('connection', function connection(ws) {
         rooms['room1'][arg.user] = arg
 
         // return json
-        sendAll(rooms)
+        sendAll(arg)
 
     }
 
@@ -70,7 +70,7 @@ wss.on('connection', function connection(ws) {
         delete rooms['room1'][arg.user]
 
         // return json
-        sendAll(rooms)
+        sendAll(arg)
     }
 
     /**
@@ -85,7 +85,7 @@ wss.on('connection', function connection(ws) {
         rooms['room1'][arg.user] = arg
 
         // emit event
-        sendAll(rooms)
+        sendAll(arg)
     }
 
     /**
