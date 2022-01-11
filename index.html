@@ -10,11 +10,15 @@
 <body>
 <strong>simple quarto</strong><br>
 <hr>
-<div id="infoVue"> <p>ユーザ: {{ userName }}</p>
-    <p>{{ turn == undefined ? "startしてください" : 
-          turn ? "あなたのターンです" : "相手のターンです" }}</p></div>
-<div>
-    <input type="button" value="start" onclick="sendStart()"/>
+
+<div id="infoVue"> 
+    <table>    
+        <tr><td>インフォメーション</td>      <td width="50"> </td><td>チャット</td></tr>
+        <tr><td>あなた: {{ userName }}</td><td></td><td>toshihide: {{toshihideMessage}}</td>
+        <tr><td>{{ turn == undefined ? "startしてください" : 
+                turn ? "あなたのターンです" : "相手のターンです" }}</td><td></td><td>haruka: {{harukaMessage}}</td>
+        <tr><td><input type="button" value="start" onclick="sendStart()"/></td><td></td><td><input type="textbox" v-model="message"/><input type="button" value="send" onclick="sendMessage()"/></td></tr>
+    </table>
 </div>
 <hr>
 

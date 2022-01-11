@@ -1,6 +1,6 @@
 var harukaFlag = getParam("user") == "toshihide" ? false : true
 var userName = function() { return harukaFlag ? 'haruka' : 'toshihide' };
-var infoData =  { userName: userName(), turn :undefined }
+var infoData =  { userName: userName(), turn :undefined, toshihideMessage:"", harukaMessage:"", message:""}
 var firstTurn = false;
 
 var selectPiece = { val : "", black : true, color : getColor()}

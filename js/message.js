@@ -40,6 +40,16 @@ function sendChoicePiece(nextTurn,piece,location) {
     )
 }
 
+function sendMessage() {
+    ws.send(
+        JSON.stringify({
+            action  : "message",
+            user    : userName(),
+            message : infoData.message
+        })
+    )
+}
+
 var ws = new WebSocket('ws://ec2-3-94-114-142.compute-1.amazonaws.com:3000/');
 ws.onmessage = function (event) {
     document.getElementById("messages").innerHTML = "<div>" + event.data + "</div>" + document.getElementById("messages").innerHTML;
@@ -73,6 +83,19 @@ ws.onmessage = function (event) {
         var e   = boardData.table[message.location[0] - 1 ].vals[message.location[1] -1]
         e.val   = message.piece.val
         e.black = message.piece.black
+    }
+    else if(message.action == "message") {
+        if(message.user == userName()){
+            infoData.message = ""
+        }
+
+        if(message.user == "toshihide"){
+            infoData.toshihideMessage = message.message
+        }else if(message.user == "haruka"){
+            infoData.harukaMessage = message.message
+        }
+
+
     }
 };
 
