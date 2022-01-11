@@ -17,6 +17,17 @@ function sendStart() {
     )
 }
 
+function sendPutPiece(location, piece) {
+    ws.send(
+        JSON.stringify({
+            action : "start",
+            user   : userName(),
+            location : location,
+            piece  : piece
+        })
+    )
+}
+
 var ws = new WebSocket('ws://ec2-3-94-114-142.compute-1.amazonaws.com:3000/');
 ws.onmessage = function (event) {
     document.getElementById("messages").innerHTML += "<div>" + event.data + "</div>";

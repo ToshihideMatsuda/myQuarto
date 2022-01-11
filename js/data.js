@@ -3,15 +3,36 @@ var userName = function() { return harukaFlag ? 'haruka' : 'toshihide' };
 var infoData =  { userName: userName(), turn :false }
 var firstTurn = false;
 
-var yourPiece = { val : "", black : true, color : getColor()}
+var selectPiece = { val : "", black : true, color : getColor()}
     
 var boardData = {
     table : [
-      { vals : [ { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false } ] },
-      { vals : [ { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false } ] },
-      { vals : [ { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false } ] },
-      { vals : [ { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false }, { val : "", selected : false } ] }
+      { vals : [ 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false } ] 
+      },
+      { vals : [ 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false } ] 
+      },
+      { vals : [ 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false } ] 
+      },
+      { vals : [ 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false }, 
+        { val : "", black : true, selected : false } ] 
+      },
     ],
+    color : getColor(),
     selected : getSelected()
   };
 
@@ -54,6 +75,7 @@ function init() {
     boardData.table.forEach((line, _, __) => { 
       line.vals.forEach((e, _, __) => { 
         e.val ="　"
+        e.black = true
         e.selected = false
       })
     })
@@ -65,8 +87,8 @@ function init() {
         })
       })
 
-    yourPiece.val   = ""
-    yourPiece.black = true 
+    selectPiece.val   = ""
+    selectPiece.black = true 
 }
 
 

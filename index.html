@@ -16,8 +16,8 @@
 </div>
 <hr>
 
-<div id="yourPiece">
-    <p>あなたの駒</p>
+<div id="selectPiece">
+    <p>選択中の駒</p>
     <table>
         <tr><td class="tdcell"><p v-bind:class="black ? color.black : color.brown">{{ val }}</p></td></tr>
     </table>
@@ -34,14 +34,16 @@
                         <tr :key="line.index">
                             <template v-for="e in line.vals">
                                 <td class="tdcell" :key="e.index">
-                                    <p v-bind:class="e.selected  ? selected.yes : selected.no" 
+                                    <p v-bind:class="[
+                                    e.black     ? color.black : color.brown, 
+                                    e.selected  ? selected.yes : selected.no]"
                                     v-on:click="clicked(e, $event)">{{ e.val }}</p>
                                 </td>
                             </template>
                         </tr>
                     </template>
                 </table>
-                <button onclick="selectBoard()">選択</button>
+                <button onclick="detectBoard()">確定</button>
             </div>
         </td>
         <td width="50"> </td>
@@ -63,7 +65,7 @@
                         </tr>
                     </template>
                 </table>
-                <button onclick="selectPiece()">選択</button>
+                <button onclick="detectPiece()">確定</button>
             </div>
         </td>
     </tr>
