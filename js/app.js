@@ -15,8 +15,9 @@ var boardVue = new Vue ({
         if(firstTurn)           { alert ("初回は駒を選択してください"); return }
         if(element.val != "　") { alert ("すでに駒が置かれています"); return} 
 
-        selectClear()
-        element.selected = true
+        if(!confirm("(" + element.location[0]  + "," + element.location[1] + ") に駒を配置しますか？")) return;
+
+        sendPutPiece(element.location,selectPiece);
       }
     }
   })
@@ -32,8 +33,22 @@ var piecesVue = new Vue ({
   methods: {
     clicked: function (element, event) {
       if(!infoData.turn) { notYourTurn(); return; }
-      selectClear()
-      element.selected = true
+      if(selectPiece.val != "") {alert("先に駒を配置してください"); return;}
+
+      if(!confirm("駒: " + element.val   + "\r\n" + 
+                  "色: " + (element.black ? "黒" : "茶") + "\r\n" + 
+                  (firstTurn ? "を選択しますか？" : "を相手に渡しますか？"))) return;
+      
+      var nextTurn = true
+      if(firstTurn) {
+        firstTurn = false
+        nextTurn = harukaFlag
+      }
+      else {
+        nextTurn = !harukaFlag
+      }
+
+      sendChoicePiece(nextTurn,element,element.location);
     }
   }
 })
@@ -46,34 +61,6 @@ var selectPieceVue = new Vue ({
     // <p>apple</p>が出力される
   }
 })
-  
-function detectBoard() {
-  if(!infoData.turn)      { notYourTurn(); return; }
-
-  var select = false
-  var selectedValue = undefined
-  boardData.table.forEach((line, _, __) => { 
-    line.vals.forEach((e, _, __) => {  
-      if( e.selected ) {
-        select = true
-        selectedValue = e
-      }
-    })
-  })
-
-  if(!select)               { alert("マス目が選択されていません"); return ;}
-  if(firstTurn)             { alert("初回は駒を選択してください"); return ;}
-  if(selectPiece.val == "") { alert("配置する駒がありません。相手に渡す駒を選択してください"); return ;}
-
-  //sendPutPiece(,)
-}
-
-
-function detectPiece() {
-  if(!infoData.turn)        { notYourTurn(); return; }
-  if(selectPiece.val != "") { alert("あなたの駒を先に配置してください"); return ;}
-  if(firstTurn)             { alert("初回は駒を選択してください"); return ;}
-}
 
 function notYourTurn() {
   alert("あなたのターンではありません。")

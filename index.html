@@ -10,7 +10,9 @@
 <body>
 <strong>simple quarto</strong><br>
 <hr>
-<div id="infoVue"> User : {{ userName }}, myTurn: {{ turn }}</div>
+<div id="infoVue"> <p>ユーザ: {{ userName }}</p>
+    <p>{{ turn == undefined ? "startしてください" : 
+          turn ? "あなたのターンです" : "相手のターンです" }}</p></div>
 <div>
     <input type="button" value="start" onclick="sendStart()"/>
 </div>
@@ -43,7 +45,6 @@
                         </tr>
                     </template>
                 </table>
-                <button onclick="detectBoard()">確定</button>
             </div>
         </td>
         <td width="50"> </td>
@@ -65,7 +66,6 @@
                         </tr>
                     </template>
                 </table>
-                <button onclick="detectPiece()">確定</button>
             </div>
         </td>
     </tr>

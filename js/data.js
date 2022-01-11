@@ -1,6 +1,6 @@
 var harukaFlag = getParam("user") == "toshihide" ? false : true
 var userName = function() { return harukaFlag ? 'haruka' : 'toshihide' };
-var infoData =  { userName: userName(), turn :false }
+var infoData =  { userName: userName(), turn :undefined }
 var firstTurn = false;
 
 var selectPiece = { val : "", black : true, color : getColor()}
@@ -8,28 +8,28 @@ var selectPiece = { val : "", black : true, color : getColor()}
 var boardData = {
     table : [
       { vals : [ 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false } ] 
+        { val : "", black : true, location:[1,1] }, 
+        { val : "", black : true, location:[1,2] }, 
+        { val : "", black : true, location:[1,3] }, 
+        { val : "", black : true, location:[1,4] } ] 
       },
       { vals : [ 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false } ] 
+        { val : "", black : true, location:[2,1] }, 
+        { val : "", black : true, location:[2,2] }, 
+        { val : "", black : true, location:[2,3] }, 
+        { val : "", black : true, location:[2,4] } ] 
       },
       { vals : [ 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false } ] 
+        { val : "", black : true, location:[3,1] }, 
+        { val : "", black : true, location:[3,2] }, 
+        { val : "", black : true, location:[3,3] }, 
+        { val : "", black : true, location:[3,4] } ] 
       },
       { vals : [ 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false }, 
-        { val : "", black : true, selected : false } ] 
+        { val : "", black : true, location:[4,1] }, 
+        { val : "", black : true, location:[4,2] }, 
+        { val : "", black : true, location:[4,3] }, 
+        { val : "", black : true, location:[4,4] } ] 
       },
     ],
     color : getColor(),
@@ -39,28 +39,28 @@ var boardData = {
 var piecesData = {
     table : [
       { vals : [ 
-        { val : "●●", black : true , selected : false, used : false}, 
-        { val : "●●", black : false, selected : false, used : false},  
-        { val : "■■", black : true , selected : false, used : false},  
-        { val : "■■", black : false, selected : false, used : false},   
+        { val : "●●", black : true , used: false, location:[1,1]}, 
+        { val : "●●", black : false, used: false, location:[1,2]},  
+        { val : "■■", black : true , used: false, location:[1,3]},  
+        { val : "■■", black : false, used: false, location:[1,4]},   
       ] },
       { vals : [ 
-        { val : "○○", black : true , selected : false, used : false}, 
-        { val : "○○", black : false, selected : false, used : false}, 
-        { val : "□□", black : true , selected : false, used : false}, 
-        { val : "□□", black : false, selected : false, used : false}, 
+        { val : "○○", black : true , used: false, location:[2,1]}, 
+        { val : "○○", black : false, used: false, location:[2,2]}, 
+        { val : "□□", black : true , used: false, location:[2,3]}, 
+        { val : "□□", black : false, used: false, location:[2,4]}, 
       ] },
       { vals : [ 
-        { val : "●", black : true , selected : false, used : false},
-        { val : "●", black : false, selected : false, used : false},
-        { val : "■", black : true , selected : false, used : false},
-        { val : "■", black : false, selected : false, used : false},
+        { val : "●", black : true , used : false, location:[3,1]},
+        { val : "●", black : false, used : false, location:[3,2]},
+        { val : "■", black : true , used : false, location:[3,3]},
+        { val : "■", black : false, used : false, location:[3,4]},
       ] },
       { vals : [ 
-        { val : "○", black : true , selected : false, used : false},
-        { val : "○", black : false, selected : false, used : false}, 
-        { val : "□", black : true , selected : false, used : false},
-        { val : "□", black : false, selected : false, used : false}, 
+        { val : "○", black : true , used : false, location:[4,1]},
+        { val : "○", black : false, used : false, location:[4,2]}, 
+        { val : "□", black : true , used : false, location:[4,3]},
+        { val : "□", black : false, used : false, location:[4,4]}, 
       ] },
     ],
     color : getColor(),

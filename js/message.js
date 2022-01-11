@@ -20,7 +20,7 @@ function sendStart() {
 function sendPutPiece(location, piece) {
     ws.send(
         JSON.stringify({
-            action : "start",
+            action : "put",
             user   : userName(),
             location : location,
             piece  : piece
@@ -28,9 +28,21 @@ function sendPutPiece(location, piece) {
     )
 }
 
+function sendChoicePiece(nextTurn,piece,location) {
+    ws.send(
+        JSON.stringify({
+            action : "choice",
+            user   : userName(),
+            location : location,
+            nextTurn : nextTurn,
+            piece  : piece
+        })
+    )
+}
+
 var ws = new WebSocket('ws://ec2-3-94-114-142.compute-1.amazonaws.com:3000/');
 ws.onmessage = function (event) {
-    document.getElementById("messages").innerHTML += "<div>" + event.data + "</div>";
+    document.getElementById("messages").innerHTML = "<div>" + event.data + "</div>" + document.getElementById("messages").innerHTML;
     console.log(JSON.parse(event.data));
 
     var message = JSON.parse(event.data)
@@ -45,6 +57,22 @@ ws.onmessage = function (event) {
             infoData.turn =false
             firstTurn = false
         }
+    }
+    else if(message.action == "choice") {
+        infoData.turn = (message.nextTurn == harukaFlag)
+        selectPiece.val   = message.piece.val
+        selectPiece.black = message.piece.black
+
+        var e  = piecesData.table[message.location[0] - 1 ].vals[message.location[1] -1]
+        e.used = true
+    }
+    else if(message.action == "put") {
+        selectPiece.val   = ""
+        selectPiece.black = true
+
+        var e   = boardData.table[message.location[0] - 1 ].vals[message.location[1] -1]
+        e.val   = message.piece.val
+        e.black = message.piece.black
     }
 };
 
