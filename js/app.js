@@ -12,7 +12,8 @@ var boardVue = new Vue ({
     methods: {
       clicked: function (element, event) {
         if(!infoData.turn) { notYourTurn(); return; }
-        if(!element.val == "　") { alert ("すでに駒が置かれています"); return} 
+        if(firstTurn)           { alert ("初回は駒を選択してください"); return }
+        if(element.val != "　") { alert ("すでに駒が置かれています"); return} 
 
         selectClear()
         element.selected = true
@@ -64,7 +65,7 @@ function detectBoard() {
   if(firstTurn)             { alert("初回は駒を選択してください"); return ;}
   if(selectPiece.val == "") { alert("配置する駒がありません。相手に渡す駒を選択してください"); return ;}
 
-  sendPutPiece(,)
+  //sendPutPiece(,)
 }
 
 
