@@ -14,10 +14,28 @@
   color: brown;
 }
 
+
 .lightgrayBGColor{
   background-color: lightgray;
 }
 
 .whiteBGColor{
   background-color: white;
+}
+
+.font-bold {
+  text-shadow: 
+    0.5px 0.5px 0, 
+    0.5px -0.5px 0px,
+    -0.5px 0.5px 0,
+    -0.5px -0.5px 0px,
+    0.5px 0px 0px,
+    0px 0.5px 0px,
+    -0.5px 0px 0px,
+    0px -0.5px 0px;
+  letter-spacing: 1px;
+}
+
+.font-normal {
+  font-weight: normal;
 }

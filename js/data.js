@@ -3,7 +3,12 @@ var userName = function() { return harukaFlag ? 'haruka' : 'toshihide' };
 var infoData =  { userName: userName(), turn :undefined, toshihideMessage:"", harukaMessage:"", message:""}
 var firstTurn = false;
 
-var selectPiece = { val : "", black : true, color : getColor()}
+var selectPiece = { 
+  val   : "", 
+  black : true, 
+  bold  : false,
+  color : getColor(),
+  fontWeight : getFontWeight()  }
     
 var boardData = {
     table : [
@@ -33,38 +38,40 @@ var boardData = {
       },
     ],
     color : getColor(),
-    selected : getSelected()
+    selected : getSelected(),
+    fontWeight : getFontWeight() 
   };
 
 var piecesData = {
     table : [
       { vals : [ 
-        { val : "●●", black : true , used: false, location:[1,1]}, 
-        { val : "●●", black : false, used: false, location:[1,2]},  
-        { val : "■■", black : true , used: false, location:[1,3]},  
-        { val : "■■", black : false, used: false, location:[1,4]},   
+        { val : "●●", black : true , used: false, location:[1,1], bold : false},
+        { val : "●●", black : false, used: false, location:[1,2], bold : false},
+        { val : "■■", black : true , used: false, location:[1,3], bold : false},  
+        { val : "■■", black : false, used: false, location:[1,4], bold : false},   
       ] },
       { vals : [ 
-        { val : "○○", black : true , used: false, location:[2,1]}, 
-        { val : "○○", black : false, used: false, location:[2,2]}, 
-        { val : "□□", black : true , used: false, location:[2,3]}, 
-        { val : "□□", black : false, used: false, location:[2,4]}, 
+        { val : "○○", black : true , used: false, location:[2,1], bold : true}, 
+        { val : "○○", black : false, used: false, location:[2,2], bold : true}, 
+        { val : "□□", black : true , used: false, location:[2,3], bold : true}, 
+        { val : "□□", black : false, used: false, location:[2,4], bold : true}, 
       ] },
       { vals : [ 
-        { val : "●", black : true , used : false, location:[3,1]},
-        { val : "●", black : false, used : false, location:[3,2]},
-        { val : "■", black : true , used : false, location:[3,3]},
-        { val : "■", black : false, used : false, location:[3,4]},
+        { val : "●", black : true , used : false, location:[3,1], bold : false},
+        { val : "●", black : false, used : false, location:[3,2], bold : false},
+        { val : "■", black : true , used : false, location:[3,3], bold : false},
+        { val : "■", black : false, used : false, location:[3,4], bold : false},
       ] },
       { vals : [ 
-        { val : "○", black : true , used : false, location:[4,1]},
-        { val : "○", black : false, used : false, location:[4,2]}, 
-        { val : "□", black : true , used : false, location:[4,3]},
-        { val : "□", black : false, used : false, location:[4,4]}, 
+        { val : "○", black : true , used : false, location:[4,1], bold : true},
+        { val : "○", black : false, used : false, location:[4,2], bold : true}, 
+        { val : "□", black : true , used : false, location:[4,3], bold : true},
+        { val : "□", black : false, used : false, location:[4,4], bold : true}, 
       ] },
     ],
     color : getColor(),
-    selected : getSelected()
+    selected : getSelected(),
+    fontWeight : getFontWeight() 
 
   };
 
@@ -107,8 +114,9 @@ function selectClear() {
 
 }
 
-function getColor()    { return  { black : "blackColor", brown : "brownColor" } }
-function getSelected() { return  { yes   : "lightgrayBGColor", no  : "whiteBGColor" } }
+function getColor()      { return  { black : "blackColor", brown : "brownColor" } }
+function getSelected()   { return  { yes   : "lightgrayBGColor", no  : "whiteBGColor" } }
+function getFontWeight() { return  { fontBold : "font-bold", fontNormal  : "font-normal" } }
 
 function getParam(name, url) {
   if (!url) url = window.location.href;

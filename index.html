@@ -2,10 +2,18 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="http://ec2-3-94-114-142.compute-1.amazonaws.com/js/data.js"></script>
+    <script src="http://ec2-3-94-114-142.compute-1.amazonaws.com/js/message.js"></script>
+    <script src="http://ec2-3-94-114-142.compute-1.amazonaws.com/js/app.js" defer></script>
+    <link rel="stylesheet" href="http://ec2-3-94-114-142.compute-1.amazonaws.com/css/style.css">
+    <!--
     <script src="js/data.js"></script>
     <script src="js/message.js"></script>
     <script src="js/app.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
+    -->
+    
 </head>
 <body>
 <strong>simple quarto</strong><br>
@@ -25,7 +33,10 @@
 <div id="selectPiece">
     <p>選択中の駒</p>
     <table>
-        <tr><td class="tdcell"><p v-bind:class="black ? color.black : color.brown">{{ val }}</p></td></tr>
+        <tr><td class="tdcell"><p v-bind:class="[
+            black ? color.black : color.brown, 
+            bold  ? fontWeight.fontBold : fontWeight.fontNormal
+            ]">{{ val }}</p></td></tr>
     </table>
 </div>
 <hr>
@@ -42,8 +53,9 @@
                                 <td class="tdcell" :key="e.index">
                                     <p v-bind:class="[
                                     e.black     ? color.black : color.brown, 
-                                    e.selected  ? selected.yes : selected.no]"
+                                    e.bold      ? fontWeight.fontBold : fontWeight.fontNormal ]"
                                     v-on:click="clicked(e, $event)">{{ e.val }}</p>
+                                    </td>
                                 </td>
                             </template>
                         </tr>
@@ -55,14 +67,15 @@
         <td>
             <div id="pieces"> 
                 <p>残りの駒</p>
-                <table>
+                <table >
                     <template v-for="line in table">
                         <tr :key="line.index">
                             <template v-for="e in line.vals">
                                 <td class="tdcell" :key="e.index">
                                     <p v-bind:class="[
-                                    e.black     ? color.black : color.brown, 
-                                    e.selected  ? selected.yes : selected.no]"
+                                    e.black ? color.black : color.brown, 
+                                    e.bold ? fontWeight.fontBold : fontWeight.fontNormal
+                                    ]"
                                     v-if="!e.used" 
                                     v-on:click="clicked(e,$event)">{{ e.val }}</p>
                                 </td>
