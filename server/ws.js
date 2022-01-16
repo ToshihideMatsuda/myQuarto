@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+var messages  = [];
 const wss = new WebSocket.Server({
     port: 3000
 });
@@ -23,14 +24,18 @@ wss.on('connection', function connection(ws) {
         // 受け取ったJSONを配列にパース
         const arg = JSON.parse(json)
         console.log(arg)
+        messages.push(arg)
         // アクション毎の各処理を実行
         switch (arg.action) {
             case 'connect':     // Roomへの入室
                 onJoin(arg)
+                messages.forEach(function(arg) {onAction(arg);} )
                 break;
             case 'disconnect':  // Roomからの退室
                 onLeave(arg)
                 break;
+            case 'start':
+                messages = [];
             default:            // その他アクション全般
                 onAction(arg)
                 break;
