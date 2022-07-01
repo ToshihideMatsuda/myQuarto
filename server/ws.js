@@ -12,6 +12,7 @@ const rooms = {
  * WebSocket 接続
  */
 wss.on('connection', function connection(ws) {
+    console.log('wss connection')
 
     /**
      * WebSocket メッセージ受信

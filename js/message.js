@@ -50,7 +50,7 @@ function sendMessage() {
     )
 }
 
-var ws = new WebSocket('ws://ec2-3-94-114-142.compute-1.amazonaws.com:3000/');
+var ws = new WebSocket('ws://ec2-107-23-3-207.compute-1.amazonaws.com:3000/');
 ws.onmessage = function (event) {
     document.getElementById("messages").innerHTML = "<div>" + event.data + "</div>" + document.getElementById("messages").innerHTML;
     console.log(JSON.parse(event.data));
