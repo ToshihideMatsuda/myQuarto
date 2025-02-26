@@ -7,8 +7,11 @@ var selectPiece = {
   val   : "", 
   black : true, 
   bold  : false,
+  tall  : false,
   color : getColor(),
-  fontWeight : getFontWeight()  }
+  fontWeight : getFontWeight(),
+  height : getHeight()  
+}
     
 var boardData = {
     table : [
@@ -39,41 +42,42 @@ var boardData = {
     ],
     color : getColor(),
     selected : getSelected(),
-    fontWeight : getFontWeight() 
+    fontWeight : getFontWeight(),
+    height : getHeight() 
   };
 
-var piecesData = {
+  var piecesData = {
     table : [
       { vals : [ 
-        { val : "●●", black : true , used: false, location:[1,1], bold : false},
-        { val : "●●", black : false, used: false, location:[1,2], bold : false},
-        { val : "■■", black : true , used: false, location:[1,3], bold : false},  
-        { val : "■■", black : false, used: false, location:[1,4], bold : false},   
+        { val : "●●", black : true , used: false, location:[1,1], bold : false, tall : false},
+        { val : "●●", black : false, used: false, location:[1,2], bold : false, tall : false},
+        { val : "■■", black : true , used: false, location:[1,3], bold : false, tall : false},  
+        { val : "■■", black : false, used: false, location:[1,4], bold : false, tall : false},   
       ] },
       { vals : [ 
-        { val : "○○", black : true , used: false, location:[2,1], bold : true}, 
-        { val : "○○", black : false, used: false, location:[2,2], bold : true}, 
-        { val : "□□", black : true , used: false, location:[2,3], bold : true}, 
-        { val : "□□", black : false, used: false, location:[2,4], bold : true}, 
+        { val : "○○", black : true , used: false, location:[2,1], bold : true, tall : false}, 
+        { val : "○○", black : false, used: false, location:[2,2], bold : true, tall : false}, 
+        { val : "□□", black : true , used: false, location:[2,3], bold : true, tall : false}, 
+        { val : "□□", black : false, used: false, location:[2,4], bold : true, tall : false}, 
       ] },
       { vals : [ 
-        { val : "●", black : true , used : false, location:[3,1], bold : false},
-        { val : "●", black : false, used : false, location:[3,2], bold : false},
-        { val : "■", black : true , used : false, location:[3,3], bold : false},
-        { val : "■", black : false, used : false, location:[3,4], bold : false},
+        { val : "●", black : true , used : false, location:[3,1], bold : false, tall : true},
+        { val : "●", black : false, used : false, location:[3,2], bold : false, tall : true},
+        { val : "■", black : true , used : false, location:[3,3], bold : false, tall : true},
+        { val : "■", black : false, used : false, location:[3,4], bold : false, tall : true},
       ] },
       { vals : [ 
-        { val : "○", black : true , used : false, location:[4,1], bold : true},
-        { val : "○", black : false, used : false, location:[4,2], bold : true}, 
-        { val : "□", black : true , used : false, location:[4,3], bold : true},
-        { val : "□", black : false, used : false, location:[4,4], bold : true}, 
+        { val : "○", black : true , used : false, location:[4,1], bold : true, tall : true},
+        { val : "○", black : false, used : false, location:[4,2], bold : true, tall : true}, 
+        { val : "□", black : true , used : false, location:[4,3], bold : true, tall : true},
+        { val : "□", black : false, used : false, location:[4,4], bold : true, tall : true}, 
       ] },
     ],
     color : getColor(),
     selected : getSelected(),
-    fontWeight : getFontWeight() 
-
-  };
+    fontWeight : getFontWeight(),
+    height : getHeight()
+};
 
 init();
 
@@ -127,3 +131,5 @@ function getParam(name, url) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+function getHeight() { return { tall : "tall", short : "short" } }

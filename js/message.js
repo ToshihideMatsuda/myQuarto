@@ -73,6 +73,7 @@ ws.onmessage = function (event) {
         selectPiece.val   = message.piece.val
         selectPiece.black = message.piece.black
         selectPiece.bold  = message.piece.bold
+        selectPiece.tall  = message.piece.tall
 
         var e  = piecesData.table[message.location[0] - 1 ].vals[message.location[1] -1]
         e.used = true
@@ -80,11 +81,13 @@ ws.onmessage = function (event) {
     else if(message.action == "put") {
         selectPiece.val   = ""
         selectPiece.black = true
+        selectPiece.tall  = false
 
         var e   = boardData.table[message.location[0] - 1 ].vals[message.location[1] -1]
         e.val   = message.piece.val
         e.black = message.piece.black
         e.bold  = message.piece.bold
+        e.tall  = message.piece.tall
     }
     else if(message.action == "message") {
         if(message.user == userName()){
